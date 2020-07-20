@@ -1,0 +1,6 @@
+[
+  { "lat": 52.02, "lng": 8.53, "msg": "Unfall vom 30. Juli 2019", "id": 0 },
+  { "lat": 52.01, "lng": 8.53, "msg": "Unfall vom 12. Juli 2019", "id": 1 },
+  { "lat": 52.02, "lng": 8.52, "msg": "Unfall vom 3. August 2019", "id": 2 },
+  { "lat": 52.025, "lng": 8.52, "msg": "Unfall vom 17. November 2019", "id": 3 }
+]

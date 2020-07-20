@@ -1,0 +1,3 @@
+.theme--dark.v-navigation-drawer {
+  z-index: 1001; /* map uses z-index up to 1000 */
+}
