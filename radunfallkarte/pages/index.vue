@@ -15,7 +15,7 @@
   </div>
 </template>
 <script>
-import cfile from './json/casualties_test.json'
+import cfile from './json/unfall_2018_bi.json'
 export default {
   data () {
     return {
