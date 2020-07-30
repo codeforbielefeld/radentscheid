@@ -121,7 +121,7 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Fahrrad Unfallkarte Bielefeld (2018)'
+      title: 'Fahrrad Unfallkarte Bielefeld (2019)'
     }
   }
 }

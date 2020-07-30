@@ -15,7 +15,7 @@
   </div>
 </template>
 <script>
-import cfile from './json/unfall_2018_bi.json'
+import cfile from './json/atlas_bi_2019.json'
 export default {
   data () {
     return {
