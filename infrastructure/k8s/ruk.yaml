@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ruk-deployment
+  labels:
+    app: ruk
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ruk
+  template:
+    metadata:
+      labels:
+        app: ruk
+    spec:
+      containers:
+      - name: ruk
+        image: ruk:latest
+        # set the imagePullPolicy to Never when using local docker images
+        # run 'eval $(minikube docker-env)' before building the docker image to use local minikube reg
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ruk-service
+  labels:
+    app: ruk
+spec:
+  selector:
+    app: ruk
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ruk-ingress
+  labels:
+    app: ruk
+spec:
+  backend:
+    serviceName: ruk-service
+    servicePort: 3000
