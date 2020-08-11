@@ -1,0 +1,48 @@
+@startuml
+
+folder "Daten" {
+    [OpenStreetmap Rohdaten] #Blue
+    [Alkis Rohdaten] #Green
+}
+
+cloud "Radentscheid" {
+
+
+    package "Flaechenvergleich" {
+        [Alkis Importer] #Blue
+        [OpenStreetmap Importer] #Green
+        [Flaechenvergleich Prozessor]
+
+    }
+
+    [Rest Interface]
+    [Web Frontend]
+
+    database "Datenbank" {
+        [Alkis Daten] #Blue
+        [OpenStreetmap Daten] #Green
+        [Flaechenvergleich Daten]
+        [Sonstige...]
+    }
+
+    [OpenStreetmap Importer] <-[#Green]- [OpenStreetmap Rohdaten] : Import
+    [OpenStreetmap Importer] -[#Green]-> [OpenStreetmap Daten] : Speichern
+    [OpenStreetmap Importer] ..> [Flaechenvergleich Prozessor] : Starten
+
+    [Alkis Importer] <-[#Blue]- [Alkis Rohdaten] : Import
+    [Alkis Importer] -[#Blue]-> [Alkis Daten] : Speichern
+    [Alkis Importer] ..> [Flaechenvergleich Prozessor] : Starten
+
+    [Flaechenvergleich Prozessor] <-[#Green]- [OpenStreetmap Daten] : Laden
+    [Flaechenvergleich Prozessor] <-[#Blue]- [Alkis Daten] : Laden
+    [Flaechenvergleich Prozessor] --> [Flaechenvergleich Daten] : Speichern
+
+    [Rest Interface] --> [Sonstige...]: Abfrage
+    [Rest Interface] --> [Flaechenvergleich Daten]: Abfrage
+
+    [Web Frontend] --> [Rest Interface]: HTTP
+}
+
+
+
+@enduml
