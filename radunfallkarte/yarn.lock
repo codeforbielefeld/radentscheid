@@ -1264,6 +1264,13 @@
   dependencies:
     "@types/geojson" "*"
 
+"@types/leaflet@^1.2.11":
+  version "1.5.17"
+  resolved "https://registry.yarnpkg.com/@types/leaflet/-/leaflet-1.5.17.tgz#b2153dc12c344e6896a93ffc6b61ac79da251e5b"
+  integrity sha512-2XYq9k6kNjhNI7PaTz8Rdxcc8Vzwu97OaS9CtcrTxnTSxFUGwjlGjTDvhTLJU+JRSfZ4lBwGcl0SjZHALdVr6g==
+  dependencies:
+    "@types/geojson" "*"
+
 "@types/node@*":
   version "14.0.14"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.14.tgz#24a0b5959f16ac141aeb0c5b3cd7a15b7c64cbce"
@@ -5195,7 +5202,22 @@ launch-editor@^2.2.1:
     chalk "^2.3.0"
     shell-quote "^1.6.1"
 
-leaflet@^1.6.0:
+leaflet-hotline@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/leaflet-hotline/-/leaflet-hotline-0.4.0.tgz#e01069836a9d2e2c78b1fa1db2013bd03c8ff8d9"
+  integrity sha1-4BBpg2qdLix4sfodsgE70DyP+Nk=
+
+leaflet.heat@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/leaflet.heat/-/leaflet.heat-0.2.0.tgz#109d8cf586f0adee41f05aff031e27a77fecc229"
+  integrity sha1-EJ2M9Ybwre5B8Fr/Ax4np3/swik=
+
+leaflet@1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.3.1.tgz#86f336d2fb0e2d0ff446677049a5dc34cf0ea60e"
+  integrity sha512-adQOIzh+bfdridLM1xIgJ9VnJbAUY3wqs/ueF+ITla+PLQ1z47USdBKUf+iD9FuUA8RtlT6j6hZBfZoA6mW+XQ==
+
+leaflet@^1.3.1, leaflet@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.6.0.tgz#aecbb044b949ec29469eeb31c77a88e2f448f308"
   integrity sha512-CPkhyqWUKZKFJ6K8umN5/D2wrJ2+/8UIpXppY7QDnUZW5bZL5+SEI2J7GBpwh4LIupOKqbNSQXgqmrEJopHVNQ==
@@ -8940,6 +8962,31 @@ vue-template-es2015-compiler@^1.9.0:
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
+
+vue2-leaflet-heatmap@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/vue2-leaflet-heatmap/-/vue2-leaflet-heatmap-1.0.5.tgz#c8a929b99ae33be880b5fa81a74025619a9f8596"
+  integrity sha512-NoHY1+AFe8pDrq91mjqiXXVanANC3EQZIDn0uPaDU8k234+d53R1FM8BxRV5YRpBvFbin38w32d9/S2BVp0G9Q==
+  dependencies:
+    leaflet.heat "^0.2.0"
+    vue2-leaflet "^1.1.1"
+
+vue2-leaflet-hotline@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/vue2-leaflet-hotline/-/vue2-leaflet-hotline-1.0.1.tgz#1bb2b354edfcdfc280caca15ec6bcbf9262b6c89"
+  integrity sha1-G7KzVO3838KAysoV7GvL+SYrbIk=
+  dependencies:
+    leaflet "^1.3.1"
+    leaflet-hotline "^0.4.0"
+    vue2-leaflet "^1.0.2"
+
+vue2-leaflet@^1.0.2, vue2-leaflet@^1.1.1:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/vue2-leaflet/-/vue2-leaflet-1.2.3.tgz#00ddeb9db4fb9a5e3b8f9c09cd97a4734366415e"
+  integrity sha512-dsmhswT6Xu2Nm59T64edvG0lpycSgIWQL3pUU7h6foP8QL+mSuT5gnhJGLO2mt+39w+HBTr4Rgz8bQvyELKVPA==
+  dependencies:
+    "@types/leaflet" "^1.2.11"
+    leaflet "1.3.1"
 
 vue2-leaflet@^2.5.2:
   version "2.5.2"
