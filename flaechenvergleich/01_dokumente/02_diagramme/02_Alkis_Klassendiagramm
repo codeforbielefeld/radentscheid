@@ -1,0 +1,33 @@
+@startuml
+
+abstract class AX_TatsaechlicheNutzung {
+    <<optional>> datumDerLetztenUeberpruefung : DateTime
+    <<optional>> qualitaetsangaben : AX_DQMitDatenerhebung
+    <<optional>> istWeitereNutzung : X_WeitereNutzung_TatsaechlicheNutzung
+}
+
+class AX_Strassenverkehr {
+    <<optional>> funktion : AX_Funktion_Strasse
+    <<optional>> name : AX_Lagebezeichnung
+    <<optional>> zweitname : CharacterString
+    <<optional>> zustand : AX_Zustand_Strasse
+}
+
+class AX_Weg {
+    <<optional>> funktion : AX_Funktion_Weg
+    <<optional>> name : AX_Lagebezeichnung
+    <<optional>> bezeichnung : CharacterString
+}
+
+class AX_Platz {
+    <<optional>> funktion : AX_Funktion_Platz
+    <<optional>> name : AX_Lagebezeichnung
+    <<optional>> zweitname : CharacterString
+    <<optional>> regionalsprache : CharacterString
+}
+
+AX_TatsaechlicheNutzung <|-- AX_Strassenverkehr
+AX_TatsaechlicheNutzung <|-- AX_Weg
+AX_TatsaechlicheNutzung <|-- AX_Platz
+
+@enduml
