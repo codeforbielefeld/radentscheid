@@ -1,2 +1,3 @@
 rootProject.name = 'flaechenvergleich'
 
+include 'alkis-importer'

@@ -1,14 +1,18 @@
-plugins {
-    id 'java'
-}
+group 'de.codefor.bielefeld.randentscheid.flaechenvergleich'
 
-group 'de.codefor.bielefeld.randentscheid'
 version '1.0-SNAPSHOT'
 
-repositories {
-    mavenCentral()
-}
+subprojects {
+    ext {
+        set('springBootAdminVersion', "2.3.0")
+        set('springCloudVersion', "Hoxton.SR7")
+    }
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+
+    }
 }
