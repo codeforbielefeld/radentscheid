@@ -1,0 +1,46 @@
+{"kinds": [
+  {
+    "id":  0,
+    "description": "Unbekannt"
+  },
+  {
+    "id":  1,
+    "description": "Zusammenstoß mit anderem Fahrzeug, das anfährt, anhält oder im ruhenden Verkehr steht"
+  },
+  {
+    "id":  2,
+    "description": "Zusammenstoß mit anderem Fahrzeug, das vorausfährt oder wartet"
+  },
+  {
+    "id":  3,
+    "description": "Zusammenstoß mit anderem Fahrzeug, das seitlich in gleicher Richtung fährt"
+  },
+  {
+    "id":  4,
+    "description": "Zusammenstoß mit anderem Fahrzeug, das entgegen- kommt"
+  },
+  {
+    "id":  5,
+    "description": "Zusammenstoß mit anderem Fahrzeug, das abbiegt, einbiegt oder kreuzt"
+  },
+  {
+    "id":  6,
+    "description": "Zusammenstoß zwischen Fahrzeug und Fußgänger"
+  },
+  {
+    "id":  7,
+    "description": "Aufprall auf ein Hindernis auf der Fahrbahn\n"
+  },
+  {
+    "id":  8,
+    "description": "Abkommen von der Fahrbahn nach rechts/links"
+  },
+  {
+    "id":  9,
+    "description": "Abkommen von der Fahrbahn nach rechts/links"
+  },
+  {
+    "id":  10,
+    "description": "Unfall anderer Art"
+  }
+]}
