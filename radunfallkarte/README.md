@@ -1,4 +1,8 @@
-# bike-casualties
+# Radunfallkarte
+
+Frontend Teil der Radunfallkarte in Vue.js.
+
+![Screenshot der Radunfallkarte](https://raw.githubusercontent.com/codeforbielefeld/radentscheid/master/radunfallkarte/documentation/heatmap-overlay.jpg)
 
 ## Build Setup
 
