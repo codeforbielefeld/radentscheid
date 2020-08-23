@@ -44,7 +44,8 @@ public class HeatmapTileController {
             @RequestParam(value = "opacity", required = false) Integer opacityRequest,
             @RequestParam(value = "tileSizeX", required = false) Integer tileSizeXRequest,
             @RequestParam(value = "tileSizeY", required = false) Integer tileSizeYRequest,
-            @RequestParam(value = "month", required = false) Integer month
+            @RequestParam(value = "month", required = false) Integer month,
+            @RequestParam(value = "expansion", required = false) Integer expansionRate
     ) throws IOException {
 
         Location tileLoc = Location.fromTile(xTile, yTile, zoom);
@@ -71,7 +72,11 @@ public class HeatmapTileController {
         Location tileLoc2 = Location.fromTile(xTile + 1, yTile + 1, zoom);
         double tileWidthInDegree = tileLoc2.lng() - tileLoc.lng();
         double tileHeightInDegree = tileLoc.lat() - tileLoc2.lat();
-        double factor = Math.pow(2, zoom) / 50;
+        int expansion = 100;
+        if (expansionRate != null) {
+            expansion = expansionRate;
+        }
+        double factor = Math.pow(2, zoom) / expansion;
 
         Location center = new Location(
                 tileLoc.lat() + (tileWidthInDegree / 2),
