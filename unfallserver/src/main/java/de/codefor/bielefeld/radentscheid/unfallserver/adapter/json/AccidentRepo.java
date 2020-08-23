@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -60,6 +61,35 @@ public class AccidentRepo implements JsonRepository<Accident, String> {
     public boolean exists(String primaryKey) {
         return accidentsDto.getAccidents().stream()
                 .anyMatch(a -> a.getId().equals(primaryKey));
+    }
+
+    public Set<Accident> findByCoordinate(double minLng, double minLat, double maxLng, double maxLat) {
+        return accidentsDto.getAccidents().stream()
+                .filter(a -> a.getLat() <= maxLat && a.getLat() >= minLat && a.getLng() <= maxLng && a.getLng() >= minLng)
+                .map(this::toDomainObject)
+                .collect(Collectors.toSet());
+    }
+
+    /**
+     * @return the accidents that are within the given radius from the lng/lat location.
+     */
+    public Set<Accident> findByDistance(Location center, double radius) {
+        return accidentsDto.getAccidents().stream()
+                .filter(a -> center.distance(new Location(a.getLat(), a.getLng())) <= radius)
+                .map(this::toDomainObject)
+                .collect(Collectors.toSet());
+    }
+
+    /**
+     * @return the accidents that are within the given radius from the lng/lat location
+     * for given year and month.
+     */
+    public Set<Accident> findByDateAndDistance(int year, int month, Location center, double radius) {
+        return accidentsDto.getAccidents().stream()
+                .filter(a -> a.getYear() == year && a.getMonth() == month)
+                .filter(a -> center.distance(new Location(a.getLat(), a.getLng())) <= radius)
+                .map(this::toDomainObject)
+                .collect(Collectors.toSet());
     }
 
     private Accident toDomainObject(AccidentDto accidentDto) {
