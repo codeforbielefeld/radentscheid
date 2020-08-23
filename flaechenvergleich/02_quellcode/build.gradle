@@ -1,0 +1,18 @@
+group 'de.codefor.bielefeld.randentscheid.flaechenvergleich'
+
+version '1.0-SNAPSHOT'
+
+subprojects {
+    ext {
+        set('springBootAdminVersion', "2.3.0")
+        set('springCloudVersion', "Hoxton.SR7")
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+
+    }
+}
