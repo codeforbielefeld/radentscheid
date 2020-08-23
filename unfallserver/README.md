@@ -25,4 +25,4 @@ $ curl http://localhost:8080/api/accident
 $ curl http://localhost:8080/tiles/14/8581/5409.png > tile_14_8581_5409.png
 ```
 
-![tile_14_8581_5409](https://github.com/codeforbielefeld/radentscheid/tree/master/unfallserver/documentation/tile_14_8581_5409.png)
+![tile_14_8581_5409](https://raw.githubusercontent.com/codeforbielefeld/radentscheid/master/unfallserver/documentation/tile_14_8581_5409.png)
