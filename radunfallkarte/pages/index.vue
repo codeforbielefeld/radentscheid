@@ -13,6 +13,12 @@
           </l-popup>
         </l-marker>
         -->
+        <l-control position="bottomleft">
+          <div style="width: 90%">
+            <v-slider hint="Im a hint" max="12" min="1"> </v-slider>
+            <v-btn>Play</v-btn>
+          </div>
+        </l-control>
       </l-map>
     </no-ssr>
   </div>

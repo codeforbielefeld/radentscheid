@@ -82,11 +82,12 @@ public class AccidentRepo implements JsonRepository<Accident, String> {
 
     /**
      * @return the accidents that are within the given radius from the lng/lat location
-     * for given year and month.
+     * for the given year and month.
+     * If year or month is null, it is not taken into consideration.
      */
-    public Set<Accident> findByDateAndDistance(int year, int month, Location center, double radius) {
+    public Set<Accident> findByDateAndDistance(Integer year, Integer month, Location center, double radius) {
         return accidentsDto.getAccidents().stream()
-                .filter(a -> a.getYear() == year && a.getMonth() == month)
+                .filter(a -> (year == null || a.getYear() == year) && (month == null || a.getMonth() == month))
                 .filter(a -> center.distance(new Location(a.getLat(), a.getLng())) <= radius)
                 .map(this::toDomainObject)
                 .collect(Collectors.toSet());

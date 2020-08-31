@@ -3,11 +3,14 @@ package de.codefor.bielefeld.radentscheid.unfallserver.adapter.web;
 import de.codefor.bielefeld.radentscheid.unfallserver.adapter.json.AccidentRepo;
 import de.codefor.bielefeld.radentscheid.unfallserver.domain.Accident;
 import de.codefor.bielefeld.radentscheid.unfallserver.domain.Location;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
 import java.awt.image.*;
 import java.io.ByteArrayOutputStream;
@@ -23,6 +26,9 @@ import java.util.stream.Collectors;
 @RequestMapping("/tiles")
 public class HeatmapTileController {
 
+
+    private final Logger logger = LoggerFactory.getLogger(HeatmapTileController.class);
+
     private final AccidentRepo accidentRepo;
 
     HeatmapTileController(AccidentRepo accidentRepo) {
@@ -30,7 +36,6 @@ public class HeatmapTileController {
     }
 
     private static final int BYTE_PER_PIXEL = 4;
-    private static final int DEFAULT_OPACITY = 60;
     private static final int DEFAULT_TILE_SIZE_X = 256;
     private static final int DEFAULT_TILE_SIZE_Y = 256;
 
@@ -41,23 +46,28 @@ public class HeatmapTileController {
             @PathVariable("z") int zoom,
             @PathVariable("x") int xTile,
             @PathVariable("y") int yTile,
-            @RequestParam(value = "opacity", required = false) Integer opacityRequest,
             @RequestParam(value = "tileSizeX", required = false) Integer tileSizeXRequest,
             @RequestParam(value = "tileSizeY", required = false) Integer tileSizeYRequest,
+            @RequestParam(value = "year", required = false) Integer year,
             @RequestParam(value = "month", required = false) Integer month,
-            @RequestParam(value = "expansion", required = false) Integer expansionRate
+            @RequestParam(value = "expansion", required = false) Integer expansionRate,
+            HttpServletResponse httpServletResponse
     ) throws IOException {
 
-        Location tileLoc = Location.fromTile(xTile, yTile, zoom);
-
-//        System.out.println("getTile(): " + zoom + ", " + xTile + ", " + yTile + " ---> " + tileLoc);
-//        System.out.println("http://localhost:8080/tiles/" + zoom + "/" + xTile + "/" + yTile + ".png");
-//        System.out.println("https://a.tile.osm.org/" + zoom + "/" + xTile + "/" + yTile + ".png");
-
-        byte opacity = (byte) DEFAULT_OPACITY;
-        if (opacityRequest != null) {
-            opacity = opacityRequest.byteValue();
+        /*
+        String pathToTile = getFilePath(zoom, xTile, yTile, year, month);
+        if (zoom == 13 && xTile <= 4299 && xTile >= 4288 && yTile <= 2711 && yTile >= 2702) {
+            httpServletResponse.sendRedirect(pathToTile);
+            return null;
         }
+        if (zoom == 14 && xTile <= 8600 && xTile >= 8576 && yTile <= 5422 && yTile >= 5400) {
+            httpServletResponse.sendRedirect(pathToTile);
+            return null;
+        }
+        */
+
+        Location tileLoc = Location.fromTile(xTile, yTile, zoom);
+        logger.info("getTile({}, {}, {}) --> {}}", zoom, xTile, yTile, tileLoc);
 
         int tileSizeX = DEFAULT_TILE_SIZE_X;
         if (tileSizeXRequest != null) {
@@ -70,6 +80,7 @@ public class HeatmapTileController {
         }
 
         Location tileLoc2 = Location.fromTile(xTile + 1, yTile + 1, zoom);
+
         double tileWidthInDegree = tileLoc2.lng() - tileLoc.lng();
         double tileHeightInDegree = tileLoc.lat() - tileLoc2.lat();
         int expansion = 100;
@@ -82,18 +93,22 @@ public class HeatmapTileController {
                 tileLoc.lat() + (tileWidthInDegree / 2),
                 tileLoc.lng() - (tileHeightInDegree / 2)
         );
+
         final Set<Accident> accidents;
-        if (month == null) {
+        if (month == null && year == null) {
             accidents = accidentRepo.findByDistance(center, tileWidthInDegree * 2);
         } else {
             accidents = accidentRepo.findByDateAndDistance(2019, month, center, tileWidthInDegree * 2);
         }
+
         Set<Location> relevantLocations = accidents.stream()
                 .map(Accident::location)
                 .collect(Collectors.toSet());
 
         byte[] bytes = new byte[tileSizeY * tileSizeX * BYTE_PER_PIXEL];
         for (int y = 0; y < tileSizeY; y++) {
+
+
             double yInWgs84 = tileLoc.lat() - (y * tileHeightInDegree / DEFAULT_TILE_SIZE_Y);
             for (int x = 0; x < DEFAULT_TILE_SIZE_X; x++) {
                 double xInWgs84 = tileLoc.lng() + (x * tileWidthInDegree / DEFAULT_TILE_SIZE_X);
@@ -121,10 +136,10 @@ public class HeatmapTileController {
                     bytes[offset + 3] = opa;
                 }
             }
+
         }
 
         DataBuffer buffer = new DataBufferByte(bytes, bytes.length);
-
         //4 bytes per pixel: red, green, blue, alpha
         final WritableRaster raster = Raster.createInterleavedRaster(
                 buffer,
@@ -145,7 +160,19 @@ public class HeatmapTileController {
         final BufferedImage image = new BufferedImage(cm, raster, true, null);
         final ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ImageIO.write(image, "png", baos);
+
         return baos.toByteArray();
+    }
+
+
+    private String getFilePath(
+            int zoom,
+            int xTile,
+            int yTile,
+            Integer year,
+            Integer month
+    ) {
+        return String.format("/stiles/%s/%s/%d/%d/%d.png", year, month, zoom, xTile, yTile);
     }
 
 }

@@ -1,3 +1,7 @@
 .theme--dark.v-navigation-drawer {
   z-index: 1001; /* map uses z-index up to 1000 */
 }
+
+.leaflet-left .leaflet-control {
+  width: 90%; /* make the controls, especially the slider, at the bottom of the map pretty wide */
+}  
