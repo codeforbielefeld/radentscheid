@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.3.2.RELEASE'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
     id 'java'
+    id 'maven'
 }
 
 group = 'de.codefor.bielefeld.randentscheid.flaechenvergleich'
@@ -17,13 +18,16 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j'
     implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
 
+    compile "org.geotools:gt-shapefile:${geotoolsVersion}"
+    testCompile "org.geotools:gt-swing:${geotoolsVersion}"
+
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
     testImplementation 'org.springframework.security:spring-security-test'
 
-    compile group: 'io.vavr', name: 'vavr', version: '0.10.3'
-    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.6.2'
+    compile "io.vavr:vavr:${vavrVersion}"
+    testCompile "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
 }
 
 dependencyManagement {
