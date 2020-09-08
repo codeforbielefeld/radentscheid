@@ -9,6 +9,10 @@ group = 'de.codefor.bielefeld.randentscheid.flaechenvergleich'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '14'
 
+configurations {
+    jaxb
+}
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
@@ -28,6 +32,12 @@ dependencies {
 
     compile "io.vavr:vavr:${vavrVersion}"
     testCompile "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+
+    jaxb (
+            'com.sun.xml.bind:jaxb-xjc:2.3.3',
+            'com.sun.xml.bind:jaxb-impl:2.3.3',
+            'org.glassfish.jaxb:jaxb-runtime:2.3.3'
+    )
 }
 
 dependencyManagement {
@@ -44,3 +54,27 @@ test {
 jar {
     enabled = true
 }
+
+task jaxb {
+    System.setProperty('javax.xml.accessExternalSchema', 'all')
+    def jaxbTargetDir = file("src/generated-sources/jaxb")
+    doLast {
+        jaxbTargetDir.mkdirs()
+        ant.taskdef(
+                name: 'xjc',
+                classname: 'com.sun.tools.xjc.XJCTask',
+                classpath: configurations.jaxb.asPath
+        )
+        ant.jaxbTargetDir = jaxbTargetDir
+        ant.xjc(
+                destdir: '${jaxbTargetDir}',
+                package: 'de.codefor.bielefeld.randentscheid.flaechenvergleich.alkisimporter.model.basisschema',
+                extension: 'true',
+                schema: 'src/main/resources/xsd/AAA-Basisschema.xsd'
+        ) {
+            binding(dir: 'src/main/resources/xsd/xjb', includes: 'globalBindings.xjb, gml.xjb, ows.xjb, xlink.xjb')
+        }
+    }
+}
+
+compileJava.dependsOn jaxb
