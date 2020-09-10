@@ -14,4 +14,8 @@
         <xjc:noValidatingUnmarshaller />
     </jaxb:globalBindings>
 
+    <jaxb:bindings node="//xs:complexType[@name='AbstractGriddedSurfaceType']//xs:attribute[@name='rows']">
+        <jaxb:property name="rowCount"/>
+    </jaxb:bindings>
+
 </jaxb:bindings>
