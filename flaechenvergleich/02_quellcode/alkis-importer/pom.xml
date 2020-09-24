@@ -3,72 +3,32 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>de.codefor.bielefeld.randentscheid.flaechenvergleich</groupId>
     <artifactId>alkis-importer</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
     <name>Alkis-Importer</name>
 
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.2.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <groupId>de.codefor.bielefeld.randentscheid.flaechenvergleich</groupId>
+        <artifactId>parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
-
-    <properties>
-        <java.version>14</java.version>
-    </properties>
 
     <dependencies>
         <dependency>
-            <groupId>org.jvnet.ogc</groupId>
-            <artifactId>ogc-schemas</artifactId>
-            <version>2.6.1</version>
+            <groupId>de.codefor.bielefeld.randentscheid.flaechenvergleich</groupId>
+            <artifactId>alkis-model</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.7.0</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>jaxb2-maven-plugin</artifactId>
-                <version>2.5.0</version>
-                <executions>
-                    <execution>
-                        <id>xjc</id>
-                        <goals>
-                            <goal>xjc</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <!-- The package of your generated sources -->
-                    <packageName>de.codefor.bielefeld.randentscheid.flaechenvergleich.model</packageName>
-                    <sources>
-                        <source>src/main/resources/xsd/AAA-Basisschema.xsd</source>
-                        <source>src/main/resources/xsd/AAA-Fachschema.xsd</source>
-                        <source>src/main/resources/xsd/NAS-Operationen.xsd</source>
-                    </sources>
-                    <xjbSources>
-                        <xjbSource>src/main/resources/xsd/xjb/globalBindings.xjb</xjbSource>
-                        <xjbSource>src/main/resources/xsd/xjb/gml.xjb</xjbSource>
-                        <xjbSource>src/main/resources/xsd/xjb/ows.xjb</xjbSource>
-                        <xjbSource>src/main/resources/xsd/xjb/xlink.xjb</xjbSource>
-                    </xjbSources>
-                    <extension>true</extension>
-                    <catalog>src/main/resources/catalog.cat</catalog>
-                    <episodes>
-                        <episode>
-                            <groupId>org.jvnet.ogc</groupId>
-                            <artifactId>ogc-schemas</artifactId>
-                        </episode>
-                    </episodes>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 
