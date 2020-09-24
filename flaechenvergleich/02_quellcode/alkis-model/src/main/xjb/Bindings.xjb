@@ -1,0 +1,47 @@
+<jaxb:bindings version="1.0" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+               xmlns:xs="http://www.w3.org/2001/XMLSchema"
+               xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+               jaxb:extensionBindingPrefixes="xjc">
+
+    <jaxb:bindings
+            schemaLocation="../xsd/AAA-Basisschema.xsd"
+            node="/xs:schema">
+        <jaxb:bindings node="xs:element[@name='GetCapabilities']">
+            <jaxb:factoryMethod name="GetCapabilitiesFactoryMethod"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+
+    <jaxb:bindings
+            schemaLocation=" http://repository.gdi-de.org/schemas/adv/wfs/1.0/WFS-basic.xsd"
+            node="/xs:schema">
+        <jaxb:bindings node="xs:element[@name='GetCapabilities']">
+            <jaxb:factoryMethod name="GetCapabilitiesFactoryMethod2"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="xs:element[@name='Query']">
+            <jaxb:factoryMethod name="QueryFactoryMethod"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+
+    <jaxb:bindings
+            schemaLocation="http://repository.gdi-de.org/schemas/adv/wfs/1.0/WFS-capabilities.xsd"
+            node="/xs:schema">
+        <jaxb:bindings node="xs:element[@name='Insert']">
+            <jaxb:factoryMethod name="InsertFactoryMethod"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="xs:element[@name='Update']">
+            <jaxb:factoryMethod name="UpdateFactoryMethod"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="xs:element[@name='Delete']">
+            <jaxb:factoryMethod name="DeleteFactoryMethod"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+
+    <jaxb:bindings
+            schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gco/gcoBase.xsd"
+            node="/xs:schema">
+        <jaxb:bindings node="xs:element[@name='AbstractObject']">
+            <jaxb:factoryMethod name="AbstractObjectFactoryMethod"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+
+</jaxb:bindings>

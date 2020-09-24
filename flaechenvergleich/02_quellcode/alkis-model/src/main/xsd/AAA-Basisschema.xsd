@@ -1,16 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><schema
-
-        xmlns="http://www.w3.org/2001/XMLSchema"
-        xmlns:adv="http://www.adv-online.de/namespaces/adv/gid/6.0"
-        xmlns:feCap="http://www.opengis.net/ogc/filterCapabilities"
-        xmlns:gml="http://www.opengis.net/gml/3.2"
-        xmlns:ows="http://www.opengis.net/ows"
-        xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo"
-        xmlns:wfs="http://www.adv-online.de/namespaces/adv/gid/wfs"
-        xmlns:wfsCap="http://www.opengis.net/wfs/capabilities"
-        xmlns:wfsext="http://www.adv-online.de/namespaces/adv/gid/wfsext"
-        elementFormDefault="qualified"
-        targetNamespace="http://www.adv-online.de/namespaces/adv/gid/6.0" version="6.0.1">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:adv="http://www.adv-online.de/namespaces/adv/gid/6.0" xmlns:feCap="http://www.opengis.net/ogc/filterCapabilities" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:ows="http://www.opengis.net/ows" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" xmlns:wfs="http://www.adv-online.de/namespaces/adv/gid/wfs" xmlns:wfsCap="http://www.opengis.net/wfs/capabilities" xmlns:wfsext="http://www.adv-online.de/namespaces/adv/gid/wfsext" elementFormDefault="qualified" targetNamespace="http://www.adv-online.de/namespaces/adv/gid/6.0" version="6.0.1">
   <import namespace="http://www.opengis.net/ogc/filterCapabilities" schemaLocation="http://repository.gdi-de.org/schemas/adv/filter/1.0/filterCapabilities.xsd"/>
   <import namespace="http://www.opengis.net/wfs/capabilities" schemaLocation="http://repository.gdi-de.org/schemas/adv/wfs/1.0/WFS-capabilities.xsd"/>
   <import namespace="http://www.adv-online.de/namespaces/adv/gid/wfsext" schemaLocation="http://repository.gdi-de.org/schemas/adv/wfsext/1.0/WFS-Erweiterungen.xsd"/>
