@@ -108,6 +108,11 @@ export default {
           to: '/'
         },
         {
+          icon: 'mdi-map-search',
+          title: 'Flächenvergleich',
+          to: '/area-comparison'
+        },
+        {
           icon: 'mdi-format-list-bulleted',
           title: 'Unfallliste',
           to: '/casualties'
