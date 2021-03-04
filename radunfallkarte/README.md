@@ -35,3 +35,5 @@ Run the docker image and expose the port 3000 to 127.0.0.1:
 $ docker run -p 127.0.0.1:3000:3000/tcp ruk:latest
 ```
 
+Frontend is now available on localhost:300.
+

@@ -2,7 +2,14 @@
 
 Einige Hinweise für den Betrieb mit k8s (e.g. locally minikube).
 
-# Minikube installieren
+## Vorbedingungen
+| Windows                                                                                                     | Linux                                                     | Mac                                                       |
+|-------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------|-----------------------------------------------------------|
+| [Hyper-V](https://docs.microsoft.com/de-de/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v ) | [KVM](https://www.linux-kvm.org/page/Main_Page)         | [HyperKit](https://github.com/moby/hyperkit)            |
+| [VirtualBox](https://www.virtualbox.org/wiki/Downloads)                                                   | [VirtualBox](https://www.virtualbox.org/wiki/Downloads) | [VirtualBox](https://www.virtualbox.org/wiki/Downloads) |
+|                                                                                                             |                                                           | [VMWare](https://www.vmware.com/products/fusion.html)   |
+
+## Minikube installieren
 
 https://kubernetes.io/docs/setup/learning-environment/minikube/
 

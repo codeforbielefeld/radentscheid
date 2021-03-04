@@ -5,13 +5,20 @@ Daneben liefert er 'Heatmaps' in Form von PNG Bildern aus, die als Overlay z.B. 
 
 # Getting Started
 
-## Build 
-
+## Build
+### Linux
 ```
 $ ./gradlew build
 ```
+### Windows
+```
+$ gradlew build
+```
+Error: Could not target platform: 'Java SE 11' using tool chain: 'JDK 8 (1.8)'.
+--> Change sourceCompatibility in build.gradle from '11' to '8' and use java 8 as project sdk (files -> project 
+structure)
 
-## Run 
+## Run
 ```
 $ java -jar ./build/libs/unfallserver-0.0.1-SNAPSHOT.jar
 ```
